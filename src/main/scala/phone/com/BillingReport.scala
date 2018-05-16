@@ -2,9 +2,10 @@ package phone.com
 
 case class BillingReport(callLogs: List[CallLog]) extends ConsolePrinter {
   def run(): Unit = {
-    val chargeableCallLogsByCustomer: Map[String, List[CallLog]] = callLogs
-      .groupBy(_.customerId)
-      .mapValues(removeHighestCostCall)
+    val chargeableCallLogsByCustomer: Map[String, List[CallLog]] =
+      callLogs
+        .groupBy(_.customerId)
+        .mapValues(removeHighestCostCall)
 
     chargeableCallLogsByCustomer foreach printTotalCost
   }
